@@ -1,5 +1,6 @@
 using Kidsffw.Contracts.Interfaces;
 using Kidsffw.Models;
+using Kidsffw.Repository.Interface;
 using Microsoft.Azure.Cosmos;
 
 namespace Kidsffw.Repository.Repository;
@@ -7,7 +8,7 @@ namespace Kidsffw.Repository.Repository;
 public class CityRepository : ICityRepository
 {
     private readonly Container _container;  
-    private const string ContainerName = "City";
+    private const string ContainerName = "cities";
     public CityRepository(ICosmosContainer container)
     {
         _container = container.GetCosmosContainer(ContainerName);

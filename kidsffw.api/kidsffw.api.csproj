@@ -7,7 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.6" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Kidsffw.Contracts\Kidsffw.Contracts.csproj" />
+      <ProjectReference Include="..\Kidsffw.Models\Kidsffw.Models.csproj" />
+      <ProjectReference Include="..\Kidsffw.Repository\Kidsffw.Repository.csproj" />
     </ItemGroup>
 
 </Project>

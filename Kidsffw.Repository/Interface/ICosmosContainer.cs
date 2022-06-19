@@ -1,6 +1,6 @@
 using Microsoft.Azure.Cosmos;
 
-namespace Kidsffw.Repository;
+namespace Kidsffw.Repository.Interface;
 
 public interface ICosmosContainer
 {
