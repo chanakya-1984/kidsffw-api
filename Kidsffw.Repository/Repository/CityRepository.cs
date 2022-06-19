@@ -53,7 +53,7 @@ public class CityRepository : ICityRepository
 
     public async IAsyncEnumerable<string> GetAllCityNames()
     {
-        var names = _container.GetItemQueryIterator<City>(new QueryDefinition("select c.Name from c"));
+        var names = _container.GetItemQueryIterator<City>(new QueryDefinition("select c.cityName from c"));
         while(names.HasMoreResults)
         {
             var nameResponse = await names.ReadNextAsync();
