@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.28.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Kidsffw.Contracts\Kidsffw.Contracts.csproj" />
+    </ItemGroup>
+
 </Project>
