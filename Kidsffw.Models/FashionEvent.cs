@@ -11,4 +11,4 @@ public record class FashionEvent(
     bool IsRegistrationOpen,
     FashionEventStatus EventStatus,
     Address EventVenue
-);
+):BaseEntity(Id);

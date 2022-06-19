@@ -6,4 +6,4 @@ public record class City(
     string State, 
     string Country, 
     FashionEvent[] Events
-    );
+    ): BaseEntity(Id);

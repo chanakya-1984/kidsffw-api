@@ -7,12 +7,12 @@ namespace Kidsffw.Repository.Repository;
 public class CityRepository : ICityRepository
 {
     private readonly Container _container;  
-    
-    public CityRepository(Container container)
+    private const string ContainerName = "City";
+    public CityRepository(ICosmosContainer container)
     {
-        _container = container;
+        _container = container.GetCosmosContainer(ContainerName);
+
     }
-    
     
     public async IAsyncEnumerable<City> GetAllAsync()
     {
@@ -32,14 +32,17 @@ public class CityRepository : ICityRepository
         throw new NotImplementedException();
     }
 
-    public Task AddAsync(City entity)
+    public async Task<City> AddAsync(City entity)
     {
-        throw new NotImplementedException();
+        var result = await _container.CreateItemAsync(entity);
+        return result;
     }
 
-    public Task UpdateAsync(City entity)
+    public async Task<City> UpdateAsync(City entity)
     {
-        throw new NotImplementedException();
+        // TODO: should be first fetch the entity and do a practical update only ??
+        var result = await _container.UpsertItemAsync(entity, new PartitionKey(entity.CityName));
+        return result;
     }
 
     public Task DeleteAsync(City entity)
@@ -59,23 +62,12 @@ public class CityRepository : ICityRepository
             }
         }
     }
-
-    public IAsyncEnumerable<FashionEvent> GetAllFashionEvents()
+    public IAsyncEnumerable<FashionEvent> GetAllFashionEvents(bool isActive)
     {
         throw new NotImplementedException();
     }
 
-    public IAsyncEnumerable<FashionEvent> GatAllFashionEventsByCity(string city)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IAsyncEnumerable<FashionEvent> GetAllActiveFashionEvents()
-    {
-        throw new NotImplementedException();
-    }
-
-    public IAsyncEnumerable<FashionEvent> GetAllActiveFashionEventsByCity(string city)
+    public IAsyncEnumerable<FashionEvent> GatAllFashionEventsByCity(string city, bool isActive)
     {
         throw new NotImplementedException();
     }

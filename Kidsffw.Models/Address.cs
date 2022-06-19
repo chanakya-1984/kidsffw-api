@@ -8,4 +8,4 @@ public record class Address(
     string City,
     string Location,
     string Area,
-    string PinCode);
+    string PinCode) : BaseEntity(Id);
