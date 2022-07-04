@@ -2,6 +2,7 @@ using Kidsffw.Contracts.Interfaces;
 using Kidsffw.Models;
 using Kidsffw.Repository.Interface;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Azure.Cosmos.Linq;
 
 namespace Kidsffw.Repository.Repository;
 
@@ -68,8 +69,17 @@ public class CityRepository : ICityRepository
         throw new NotImplementedException();
     }
 
-    public IAsyncEnumerable<FashionEvent> GatAllFashionEventsByCity(string city, bool isActive)
+    public async IAsyncEnumerable<FashionEvent[]> GatAllFashionEventsByCity(string city, bool isActive)
     {
-        throw new NotImplementedException();
+        var _events = _container.GetItemQueryIterator<City>
+            (new QueryDefinition("select c.events from c where c.cityName = @city").WithParameter("@city", city));
+        while (_events.HasMoreResults)
+        {
+            var results = await _events.ReadNextAsync();
+            foreach (var fashionEvent in results)
+            {
+                yield return fashionEvent.Events.Where(x=>x.IsRegistrationOpen == isActive).ToArray();
+            }
+        }
     }
 }

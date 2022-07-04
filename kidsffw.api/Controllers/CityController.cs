@@ -17,7 +17,7 @@ namespace kidsffw.api.Controllers
             _cityRepository = cityRepository;
         }
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] City city)
+        public async Task<IActionResult> Post([FromBody] City? city)
         {
             if (city == null)
             {
@@ -38,6 +38,13 @@ namespace kidsffw.api.Controllers
         {
             var cities =  _cityRepository.GetAllCityNames();
             return Ok(cities);
+        }
+        
+        [HttpGet("GetActiveEventsByCity/{city}")]
+        public async Task<IActionResult> GetAllActiveEvents(string city)
+        {
+            var events =  _cityRepository.GatAllFashionEventsByCity(city,true);
+            return Ok(events);
         }
     }
 }

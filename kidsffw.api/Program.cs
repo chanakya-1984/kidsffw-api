@@ -26,6 +26,7 @@ builder.Configuration.GetSection("CosmosDB").Bind(dbSettings);
 builder.Services.AddSingleton<CosmosDbSettings>(dbSettings);
 builder.Services.AddSingleton<ICosmosContainer, CosmosContainer>();
 builder.Services.AddTransient<ICityRepository, CityRepository>();
+builder.Services.AddTransient<IPartnerRepository, PartnerRepository>();
 
 var app = builder.Build();
 

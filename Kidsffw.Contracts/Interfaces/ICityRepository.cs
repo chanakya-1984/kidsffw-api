@@ -6,5 +6,5 @@ public interface ICityRepository : IRepository<City>
 {
     IAsyncEnumerable<string> GetAllCityNames();
     IAsyncEnumerable<FashionEvent> GetAllFashionEvents(bool isActive);
-    IAsyncEnumerable<FashionEvent> GatAllFashionEventsByCity(string city,bool isActive);
+    IAsyncEnumerable<FashionEvent[]> GatAllFashionEventsByCity(string city,bool isActive);
 }
